@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -41,7 +40,7 @@ public class SecurityConfig {
                                 .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .permitAll()
-                        .defaultSuccessUrl("/api/v1/developers")
+                        .defaultSuccessUrl("/api/v1/chat")
                 )
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout", "POST"))
@@ -49,21 +48,17 @@ public class SecurityConfig {
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/auth/login");
-
         return  http.build();
     }
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
+        return new InMemoryUserDetailsManager(
+                User.builder()
                         .username("admin")
                         .password(passwordEncoder().encode("admin"))
-                        .authorities(Role.ADMIN_ROLE.name())
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
+                        .authorities(Role.ADMIN_ROLE.getAuthorities())
+                        .build());
     }
-
 
     @Bean
     protected PasswordEncoder passwordEncoder() {

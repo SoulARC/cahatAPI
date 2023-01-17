@@ -50,7 +50,7 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return isActive;
     }
     public static UserDetails fromUser(User user) {
         return new org.springframework.security.core.userdetails.User(
