@@ -1,5 +1,5 @@
 package chatApi.config;
-;
+
 import chatApi.model.Role;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

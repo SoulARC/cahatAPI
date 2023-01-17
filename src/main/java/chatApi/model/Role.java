@@ -1,10 +1,8 @@
 package chatApi.model;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 public enum Role {
     USER_ROLE(Set.of(Permission.USER_READ)),
