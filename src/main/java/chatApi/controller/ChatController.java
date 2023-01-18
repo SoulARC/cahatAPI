@@ -16,15 +16,15 @@ public class ChatController {
 
     @MessageMapping("/chat.logIn")
     @SendTo("/topic/all")
-    public ChatMessage logIn(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor){
-        Objects.requireNonNull(headerAccessor.getSessionAttributes()).put("username",chatMessage.getSender());
-        Storage.activeUserList.add(new User(chatMessage.getSender(),headerAccessor.getSessionId()));
+    public ChatMessage logIn(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+        Objects.requireNonNull(headerAccessor.getSessionAttributes()).put("username", chatMessage.getSender());
+        Storage.activeUserList.add(new User(chatMessage.getSender(), headerAccessor.getSessionId()));
         return chatMessage;
     }
 
     @MessageMapping("/chat.send")
     @SendTo("/topic/all")
-    public ChatMessage send(@Payload ChatMessage chatMessage){
+    public ChatMessage send(@Payload ChatMessage chatMessage) {
         return chatMessage;
     }
 }

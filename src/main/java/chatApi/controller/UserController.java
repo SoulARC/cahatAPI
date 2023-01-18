@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @GetMapping("/active")
-    public List<User> list(){
+    public List<User> list() {
         return Storage.activeUserList;
     }
 }

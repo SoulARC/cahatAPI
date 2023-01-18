@@ -1,5 +1,6 @@
 package chatApi.config;
 
+import java.util.Objects;
 import chatApi.model.MessageType;
 import chatApi.storage.Storage;
 import org.springframework.context.event.EventListener;
@@ -9,8 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import chatApi.model.ChatMessage;
-
-import java.util.Objects;
 
 @Component
 public class SocketAction {
@@ -30,13 +29,13 @@ public class SocketAction {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         String userName = (String)
                 Objects.requireNonNull(headerAccessor.getSessionAttributes()).get("username");
-        if(userName != null){
+        if (userName != null) {
             System.out.printf("%s is not connected%n", userName);
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setChatType(MessageType.LEAVE);
             chatMessage.setSender(userName);
             Storage.removeBySession(headerAccessor.getSessionId());
-            messagingTemplate.convertAndSend("/topic/all",chatMessage);
+            messagingTemplate.convertAndSend("/topic/all", chatMessage);
         }
     }
 }
