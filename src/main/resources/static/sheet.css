@@ -13,7 +13,6 @@ body {
     max-width: 800px;
     height: 500px;
     border-radius: 10px;
-    background-color: #fff;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
@@ -129,7 +128,7 @@ body {
 }
 .messages .message .text_wrapper::after {
     border-width: 13px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 .messages .message .text_wrapper::before {
     border-width: 15px;
@@ -141,7 +140,6 @@ body {
 }
 
 .bottom_wrapper {
-    position: relative;
     width: 100%;
     background-color: #fff;
     padding: 20px 20px;
@@ -294,7 +292,7 @@ form{
 form *{
     font-family: 'Poppins',sans-serif;
     color: #ffffff;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     outline: none;
     border: none;
 }
