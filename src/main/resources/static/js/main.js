@@ -76,7 +76,7 @@ function joinUser(message, state) {
 }
 
 function send() {
-    const messageUser = document.querySelector('#sms').value.trim()     //
+    const messageUser = document.querySelector('#sms').value.trim()
     if (messageUser && stomp) {
         const userMessage = {
             message: messageUser,
@@ -106,11 +106,11 @@ function showUser(users) {
     const mainDiv = document.createElement('div');
     mainDiv.classList.add('abso');
     mainDiv.id = 'test';
-    for (let z = 0; z < users.length; z++) {
+    for (let j = 0; j < users.length; j++) {
         const div = document.createElement('div');
         const span1 = document.createElement('span');
         span1.classList.add('name-us');
-        const userName = document.createTextNode(users[z].username);
+        const userName = document.createTextNode(users[j].username);
         span1.appendChild(userName);
         const span2 = document.createElement('span');
         const i = document.createElement('i');
